@@ -6,10 +6,12 @@ RUN mkdir -p /usr/src/app/home && \
 WORKDIR /usr/src/app
 
 COPY requirements.txt /usr/src/app
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip --disable-pip-version-check install --no-cache-dir -r requirements.txt
 
 COPY radosgw_usage_exporter.py /usr/src/app
+RUN python -m compileall /usr/src/app/
 
+ENV PYTHONFAULTHANDLER=1
 USER 998
 EXPOSE 9242
 
