@@ -142,7 +142,7 @@ class RADOSGWCollector(object):
         """
 
         b_labels = ["bucket", "owner", "category", "store"]
-        b_labels=b_labels+self.tag_list.split(",")
+        b_labels = b_labels + self.tag_list.split(",")
 
         self._prometheus_metrics = {
             "ops": CounterMetricFamily(
@@ -380,7 +380,6 @@ class RADOSGWCollector(object):
             else:
                 bucket_zonegroup = "0"
 
-
             taglist = []
             if "tagset" in bucket:
                 bucket_tagset = bucket["tagset"]
@@ -390,7 +389,7 @@ class RADOSGWCollector(object):
                             taglist.append(bucket_tagset[k])
 
             b_metrics = [bucket_name, bucket_owner, bucket_zonegroup, self.store]
-            b_metrics=b_metrics+taglist
+            b_metrics = b_metrics + taglist
 
             self._prometheus_metrics["bucket_usage_bytes"].add_metric(
                 b_metrics,
